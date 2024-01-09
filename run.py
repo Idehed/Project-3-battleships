@@ -1,4 +1,9 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
-a = 5
+import random
+
+# Board for the computer
+HIDDEN_COMPUTER = [['( )'] *11 for x in range(11)]
+
+# Board for the user. Here you will se misses and hits on the ships.
+PLAYER_BOARD_SEEN = [['( )'] *11 for x in range(11)]
+
+
