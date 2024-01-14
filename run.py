@@ -58,7 +58,6 @@ def create_board(board):
     print("  -----------------------------------")
 
 
-create_board(HIDDEN_COMPUTER)
 
 
 def create_ships(board, SHIP_LENGTHS):
@@ -69,30 +68,32 @@ def create_ships(board, SHIP_LENGTHS):
         if board == HIDDEN_COMPUTER:
             orientation = random.choice(['horizontal', 'vertical'])
             if orientation == 'horizontal':
-                x = random.randint(0, len(board) - SHIP_LENGTHS)
-                y = random.randint(0, len(board) - 1)
+                row = random.randint(0, len(board) - SHIP_LENGTHS)
+                column = random.randint(0, len(board) - 1)
                 for i in range(SHIP_LENGTHS):
-                    board[y][x + i] = 'S'  
+                    board[column][row + i] = 'S'  
             else:
-                x = random.randint(0, len(board) - 1)
-                y = random.randint(0, len(board) - SHIP_LENGTHS)
+                row = random.randint(0, len(board) - 1)
+                column = random.randint(0, len(board) - SHIP_LENGTHS)
                 for i in range(SHIP_LENGTHS):
-                    board[y + i][x] = 'S'
+                    board[column + i][row] = 'S'
             break
    
         if board == PLAYER_BOARD_SEEN:
             orientation = random.choice(['horizontal', 'vertical'])
             if orientation == 'horizontal':
-                x = random.randint(0, len(board) - SHIP_LENGTHS)
-                y = random.randint(0, len(board) - 1)
+                row = random.randint(0, len(board) - SHIP_LENGTHS)
+                column = random.randint(0, len(board) - 1)
                 for i in range(SHIP_LENGTHS):
-                    board[y][x + i] = 'S'    
+                    board[column][row + i] = 'S'    
             else:
-                x = random.randint(0, len(board) - 1)
-                y = random.randint(0, len(board) - SHIP_LENGTHS)
+                row = random.randint(0, len(board) - 1)
+                column = random.randint(0, len(board) - SHIP_LENGTHS)
                 for i in range(SHIP_LENGTHS):
-                    board[y + i][x] = 'S'
-            break
+                    board[column + i][row] = 'S'
+            return board
+
+create_ships(board, SHIP_LENGTHS)
 
 
 def ship_hit():
@@ -100,9 +101,9 @@ def ship_hit():
     This functions counts the hits of both the player and the computer
     '''
     count = 0
-    for x in board:
-        for y in x:
-            if y == 'S':
+    for row in board:
+        for column in row:
+            if column == 'S':
                 count += 1
     return count
 
