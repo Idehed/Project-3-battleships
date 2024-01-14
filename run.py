@@ -62,6 +62,9 @@ create_board(HIDDEN_COMPUTER)
 
 
 def create_ships(board, SHIP_LENGTHS):
+    '''
+    Prints the boats on the boards for both the player and the computer
+    '''
     while True:
         if board == HIDDEN_COMPUTER:
             orientation = random.choice(['horizontal', 'vertical'])
@@ -104,7 +107,18 @@ def ship_hit():
     return count
 
 
+def check_ship_fits(SHIP_LENGTHS, x, y, orientation):
+    if orientation == "S":
+        if x + SHIP_LENGTHS > 9:
+            return False
+        else:
+             return True
 
+    else:
+        if y + SHIP_LENGTHS > 9:
+            return False
+        else:
+            return True
 
 def get_ships():
     pass
