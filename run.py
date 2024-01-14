@@ -93,7 +93,16 @@ def create_ships(board, SHIP_LENGTHS):
 
 
 def ship_hit():
-    pass
+    '''
+    This functions counts the hits of both the player and the computer
+    '''
+    count = 0
+    for x in board:
+        for y in x:
+            if y == 'S':
+                count += 1
+    return count
+
 
 
 
