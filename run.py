@@ -145,7 +145,7 @@ def player_input(create_board):
                 break
 
         except ValueError:
-            print("Wrong row number, try again")
+            print("Wrong row number, try again\n")
 
     while True:
         try:
@@ -155,13 +155,34 @@ def player_input(create_board):
                 break
 
         except KeyError:
-            print("Wrong column letter, try again")
+            print("Wrong column letter, try again\n")
     return row, column
 
-def get_ships():
-    pass
-
-
+def turns(board):
+    if board == HIDDEN_COMPUTER:
+        row, column = player_input(HIDDEN_COMPUTER)
+        if board[row][column] == 'O':
+            turns(board)
+        elif board[row][column] == 'X':
+            turns(board)
+        elif HIDDEN_COMPUTER[row][column] == ' S ':
+            board[row][column] = 'X'
+            print("Your hit a ship!\n")
+        else:
+            board[row][column] = 'O'
+            print("You missed!")
+    else:
+        row, column = random.randint(0,8), random.randint(0,8)
+        if board[row][column] == 'O':
+            turns(board)
+        elif board[row][column] == 'X':
+            turns(board)
+        elif PLAYER_BOARD_SEEN[row][column] == ' S ':
+            board[row][column] = 'X'
+            print("Your hit a ship!\n") 
+        else:
+            board[row][column] = 'O'
+            print("You missed!")
 
 def game_battleship():
     pass
