@@ -9,7 +9,7 @@ PLAYER_BOARD_SEEN = [[' ~ '] *9 for x in range(9)]
 # Converting Letter to numbers
 LETTER_TO_NUM = {'A':0, 'B':1, 'C':2, 'D':3, 'E':4, 'F':5, 'G':6, 'H':7, 'I':8}
 
-SHIP_LENGTHS = [2, 3, 4, 5]
+SHIP_LENGTHS = [1, 2, 3, 4, 5]
 
 
 def welcome_instruction_name():
