@@ -9,7 +9,7 @@ PLAYER_BOARD_SEEN = [[' ~ '] *9 for x in range(9)]
 # Converting Letter to numbers
 LETTER_TO_NUM = {'A':0, 'B':1, 'C':2, 'D':3, 'E':4, 'F':5, 'G':6, 'H':7, 'I':8}
 
-SHIP_LENGTHS = 3
+SHIP_LENGTHS = [2, 3, 4]
 
 
 def welcome_instruction_name():
@@ -60,40 +60,40 @@ def create_board(board):
 
 
 
-def create_ships(board, SHIP_LENGTHS):
+def create_ships(board):
     '''
     Prints the boats on the boards for both the player and the computer
     '''
-    while True:
-        if board == HIDDEN_COMPUTER:
-            orientation = random.choice(['horizontal', 'vertical'])
-            if orientation == 'horizontal':
-                row = random.randint(0, len(board) - SHIP_LENGTHS)
-                column = random.randint(0, len(board) - 1)
-                for i in range(SHIP_LENGTHS):
-                    board[column][row + i] = 'S'  
+    for ship_size in SHIP_LENGTHS:
+        while True:
+            if board == HIDDEN_COMPUTER:
+                orientation = random.choice(['horizontal', 'vertical'])
+                if orientation == 'horizontal':
+                    row = random.randint(0, len(board))
+                    column = random.randint(0, len(board))
+
+                    for i in range(row, row + ship_size):
+                        board[column][i] = ' S '  
             else:
-                row = random.randint(0, len(board) - 1)
-                column = random.randint(0, len(board) - SHIP_LENGTHS)
-                for i in range(SHIP_LENGTHS):
-                    board[column + i][row] = 'S'
+                row = random.randint(0, len(board))
+                column = random.randint(0, len(board))
+                for i in range(column, column + ship_size):
+                    board[i][row] = ' S '
             break
    
         if board == PLAYER_BOARD_SEEN:
             orientation = random.choice(['horizontal', 'vertical'])
             if orientation == 'horizontal':
-                row = random.randint(0, len(board) - SHIP_LENGTHS)
-                column = random.randint(0, len(board) - 1)
-                for i in range(SHIP_LENGTHS):
-                    board[column][row + i] = 'S'    
+                row = random.randint(0, len(board))
+                column = random.randint(0, len(board))
+                for i in range(row, row + ship_size):
+                    board[column][i] = ' S '    
             else:
-                row = random.randint(0, len(board) - 1)
-                column = random.randint(0, len(board) - SHIP_LENGTHS)
-                for i in range(SHIP_LENGTHS):
-                    board[column + i][row] = 'S'
-            return board
-
-create_ships(board, SHIP_LENGTHS)
+                row = random.randint(0, len(board))
+                column = random.randint(0, len(board))
+                for i in range(ship_size):
+                    board[i][row] = ' S '
+            break
 
 
 def ship_hit():
@@ -103,13 +103,13 @@ def ship_hit():
     count = 0
     for row in board:
         for column in row:
-            if column == 'S':
+            if column == ' S ':
                 count += 1
     return count
 
 
 def check_ship_fits(SHIP_LENGTHS, x, y, orientation):
-    if orientation == "S":
+    if orientation == ' S ':
         if x + SHIP_LENGTHS > 9:
             return False
         else:
@@ -120,6 +120,10 @@ def check_ship_fits(SHIP_LENGTHS, x, y, orientation):
             return False
         else:
             return True
+
+def ship_overlaps():
+    pass
+
 
 def get_ships():
     pass
