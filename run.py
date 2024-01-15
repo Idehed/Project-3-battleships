@@ -132,6 +132,32 @@ def ship_overlaps(ship_size, row, column, orientation):
     return False
 
 
+def player_input(create_board):
+    '''
+    Here the player types in their guesses for both rows and columns.
+    They get and error message if they type in the wrong key and then they try again.
+    '''
+    while True:
+        try:
+            row = input("Guess the row between 1-9:\n")
+            if row in "123456789":
+                row = int(row) -1
+                break
+
+        except ValueError:
+            print("Wrong row number, try again")
+
+    while True:
+        try:
+            column = input("Guess the column between A-I:\n").upper()
+            if row in "ABCDEFGHI":
+                column = LETTER_TO_NUM[column]
+                break
+
+        except KeyError:
+            print("Wrong column letter, try again")
+    return row, column
+
 def get_ships():
     pass
 
