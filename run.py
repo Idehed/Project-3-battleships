@@ -1,13 +1,23 @@
 import random
 
 # Board for the computer
-HIDDEN_COMPUTER = [[' ~ '] *9 for x in range(9)]
+HIDDEN_COMPUTER = [[' ~ '] * 9 for x in range(9)]
 
 # Board for the user. Here you will se misses and hits on the ships.
-PLAYER_BOARD_SEEN = [[' ~ '] *9 for x in range(9)]
+PLAYER_BOARD_SEEN = [[' ~ '] * 9 for x in range(9)]
 
 # Converting Letter to numbers
-LETTER_TO_NUM = {'A':0, 'B':1, 'C':2, 'D':3, 'E':4, 'F':5, 'G':6, 'H':7, 'I':8}
+LETTER_TO_NUM = {
+    'A': 0,
+    'B': 1,
+    'C': 2,
+    'D': 3,
+    'E': 4,
+    'F': 5,
+    'G': 6,
+    'H': 7,
+    'I': 8
+}
 
 SHIP_LENGTHS = [1, 2, 3, 4, 5]
 
@@ -15,7 +25,7 @@ SHIP_LENGTHS = [1, 2, 3, 4, 5]
 def welcome_instruction_name():
     '''
     Welcome message is desplayed and also some information about the game.
-    Player will start the game with typing in their name.  
+    Player will start the game with typing in their name.
     '''
     print("-----------------------")
     print("Welcome to Battleships!")
@@ -25,14 +35,12 @@ def welcome_instruction_name():
     print("-The boats are randomly placed and can be 1-5 in length")
     print("-Guess a row (A - I) and a column (1 - 9)")
     print("-To start the game enter your name\n")
-    
     player_name = input("Please enter your name: \n")
-
     print(f"Let's sink some boats {player_name}!")
     print("")
 
-welcome_instruction_name()
 
+welcome_instruction_name()
 
 
 def create_board(board):
@@ -42,21 +50,17 @@ def create_board(board):
     print("   A   B   C   D   E   F   G   H   I  ")
     print("  -----------------------------------")
 
-
     row_number = 1
     for row in board:
         row_place = (f"{row_number}|{'|'.join(row)}|")
 
         if board is HIDDEN_COMPUTER:
             row_place = row_place.replace(' S ', ' ~ ')
-        
-        print(row_place)
-        row_number +=1
 
+        print(row_place)
+        row_number += 1
 
     print("  -----------------------------------\n")
-
-
 
 
 def create_ships(board):
@@ -70,26 +74,26 @@ def create_ships(board):
                 row = random.randint(0, 8)
                 column = random.randint(0, 8)
                 if check_ship_fits(ship_size, row, column, orientation):
-                    if not ship_overlaps(board, row, column, orientation, ship_size):
-
+                    if not ship_overlaps(board, row, column, orientation,
+                                         ship_size):
                         if orientation == 'horizontal':
                             for i in range(column, column + ship_size):
-                                board[row][i] = ' S '  
+                                board[row][i] = ' S '
                         else:
                             for i in range(row, row + ship_size):
                                 board[i][column] = ' S '
                         break
-   
+
             if board == PLAYER_BOARD_SEEN:
                 orientation = random.choice(['horizontal', 'vertical'])
                 row = random.randint(0, 8)
                 column = random.randint(0, 8)
                 if check_ship_fits(ship_size, row, column, orientation):
-                    if not ship_overlaps(board, row, column, orientation, ship_size):
-
+                    if not ship_overlaps(board, row, column, orientation,
+                                         ship_size):
                         if orientation == 'horizontal':
                             for i in range(column, column + ship_size):
-                                board[row][i] = ' S '    
+                                board[row][i] = ' S '
                         else:
                             for i in range(row, row + ship_size):
                                 board[i][column] = ' S '
@@ -110,13 +114,13 @@ def ship_hit(board):
 
 def check_ship_fits(SHIP_LENGTHS, row, column, orientation):
     '''
-    This function checks if placed ships on board will fit 
+    This function checks if placed ships on board will fit
     '''
     if orientation == 'horizontal':
         if column + SHIP_LENGTHS > 9:
             return False
         else:
-             return True
+            return True
 
     else:
         if row + SHIP_LENGTHS > 9:
@@ -125,9 +129,10 @@ def check_ship_fits(SHIP_LENGTHS, row, column, orientation):
             return True
 
 
-def ship_overlaps(board, row, column, orientation ,ship_size):
+def ship_overlaps(board, row, column, orientation, ship_size):
     '''
-    This function will check if the placed ships are placed on top of each other
+    This function will check if the placed
+    ships are placed on top of each other
     '''
     if orientation == "horizontal":
         for i in range(column, column + ship_size):
@@ -136,20 +141,21 @@ def ship_overlaps(board, row, column, orientation ,ship_size):
     else:
         for i in range(row, row + ship_size):
             if board[i][column] == ' S ':
-                return True 
+                return True
     return False
 
 
 def player_input(create_ships):
     '''
     Here the player types in their guesses for both rows and columns.
-    They get and error message if they type in the wrong key and then they try again.
+    They get and error message if they type
+    in the wrong key and then they try again.
     '''
     while True:
         try:
             row = input("Guess the row between 1-9:\n")
             if row in "123456789":
-                row = int(row) -1
+                row = int(row) - 1
                 break
             else:
                 print("Wrong row number, try again\n")
@@ -178,27 +184,24 @@ def turns(board):
     if board == HIDDEN_COMPUTER:
         row, column = player_input(HIDDEN_COMPUTER)
         if board[row][column] == ' O ':
-            print("You already guessed this\n")  
+            print("You already guessed this\n")
         elif board[row][column] == ' X ':
-            print("You already guessed this\n")   
+            print("You already guessed this\n")
         elif HIDDEN_COMPUTER[row][column] == ' S ':
             board[row][column] = ' X '
-            print("You hit a ship\n")    
+            print("You hit a ship\n")
         else:
             board[row][column] = ' O '
             print("You missed!\n")
     else:
-        row, column = random.randint(0,8), random.randint(0,8)
+        row, column = random.randint(0, 8), random.randint(0, 8)
         if board[row][column] == ' O ':
             print("You already guessed this\n")
-            
         elif board[row][column] == ' X ':
             print("You already guessed this\n")
-            
         elif PLAYER_BOARD_SEEN[row][column] == ' S ':
             board[row][column] = ' X '
             print("The computer hit a ship!\n")
-            
         else:
             board[row][column] = ' O '
             print("The computer missed!\n")
@@ -208,29 +211,29 @@ def game_battleship():
     '''
     The main game function
     '''
-    #Getting the ships for each board
+    # Getting the ships for each board
     create_ships(HIDDEN_COMPUTER)
     create_ships(PLAYER_BOARD_SEEN)
 
-    #Show the players board
+    # Show the players board
     print("Guess a battleship location")
     print("Players board")
     print("-------------")
     create_board(PLAYER_BOARD_SEEN)
 
     while True:
-        #Players turn
+        # Players turn
         print("Computers board")
         print("---------------")
         create_board(HIDDEN_COMPUTER)
         turns(HIDDEN_COMPUTER)
-        
+
         if ship_hit(HIDDEN_COMPUTER) == 15:
             print("--------------------------------")
             print("You hit all the ships, you win!!\n")
             break
-        
-        #Computer turn
+
+        # Computer turn
         print("Players board")
         print("-------------")
         turns(PLAYER_BOARD_SEEN)
@@ -240,7 +243,6 @@ def game_battleship():
             print("--------------------------------------------")
             print("The computer hit all your ships, you lose...\n")
             break
-        
-        
+
 
 game_battleship()
