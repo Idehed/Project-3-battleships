@@ -224,7 +224,7 @@ def game_battleship():
         create_board(PLAYER_BOARD_SEEN)
 
         if ship_hit(PLAYER_BOARD_SEEN) == 15:
-            print("The cumputer hit all your ships, you lose..\n")
+            print("The computer hit all your ships, you lose..\n")
         break
         
 
