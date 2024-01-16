@@ -30,6 +30,7 @@ def welcome_instruction_name():
         player_name = input("Please enter your name: ")
         if player_name:
             break
+        
         print("Name can not be empty, try again")
        
 
@@ -136,13 +137,6 @@ def ship_overlaps(board, row, column, orientation ,ship_size):
     return False
 
 
-create_ships(HIDDEN_COMPUTER)
-create_ships(PLAYER_BOARD_SEEN)
-print("Players board\n")
-create_board(HIDDEN_COMPUTER)
-print("Computer board\n")
-create_board(PLAYER_BOARD_SEEN)
-
 def player_input(create_ships):
     '''
     Here the player types in their guesses for both rows and columns.
@@ -182,7 +176,7 @@ def turns(board):
             turns(board)
         elif HIDDEN_COMPUTER[row][column] == ' S ':
             board[row][column] = 'X'
-            print("Your hit a ship!\n")
+            print("You hit a ship!\n")
         else:
             board[row][column] = 'O'
             print("You missed!")
@@ -194,10 +188,42 @@ def turns(board):
             turns(board)
         elif PLAYER_BOARD_SEEN[row][column] == ' S ':
             board[row][column] = 'X'
-            print("Your hit a ship!\n") 
+            print("The computer hit a ship!\n") 
         else:
             board[row][column] = 'O'
-            print("You missed!")
+            print("The computer missed!")
 
 def game_battleship():
-    pass
+    '''
+    The main game function
+    '''
+    #Getting the ships for each board
+    create_ships(HIDDEN_COMPUTER)
+    create_ships(PLAYER_BOARD_SEEN)
+
+    #Show the players board
+    print("Players board\n")
+    create_board(PLAYER_BOARD_SEEN)
+
+    while True:
+        #Players turn
+        print("Computer board\n")
+        create_board(HIDDEN_COMPUTER)
+        turns(HIDDEN_COMPUTER)
+
+        if ship_hit(HIDDEN_COMPUTER) == 15:
+            print("You hit all the ships, you win!!")
+
+        break
+
+        
+        #Computer turn
+        print("Players board\n")
+        turns(PLAYER_BOARD_SEEN)
+        create_board(PLAYER_BOARD_SEEN)
+
+        if ship_hit(PLAYER_BOARD_SEEN) == 15:
+            print("The cumputer hit all your ships, you lose..")
+        break
+
+game_battleship()
