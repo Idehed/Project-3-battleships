@@ -23,10 +23,10 @@ def welcome_instruction_name():
     print("-Your task is to sink all 5 boats that are in the ocean")
     print("-The first one to get 15 strikes on the boats win!")
     print("-The boats are randomly placed and can be 1-5 in length")
-    print("-Guess a row (A - I) and a column (0 - 8)")
+    print("-Guess a row (A - I) and a column (1 - 9)")
     print("-To start the game enter your name\n")
     
-    player_name = input("Please enter your name: ")
+    player_name = input("Please enter your name: \n")
 
     print(f"Let's sink some boats {player_name}!")
     print("")
@@ -45,7 +45,12 @@ def create_board(board):
 
     row_number = 1
     for row in board:
-        print(f"{row_number}|{'|'.join(row)}|")
+        row_place = (f"{row_number}|{'|'.join(row)}|")
+
+        if board is HIDDEN_COMPUTER:
+            row_place = row_place.replace(' S ', ' ~ ')
+        
+        print(row_place)
         row_number +=1
 
 
@@ -165,6 +170,7 @@ def player_input(create_ships):
             print("Invalid input, try again\n")
     return row, column
 
+
 def turns(board):
     '''
     This function will go through the player and the computers turns
@@ -172,27 +178,35 @@ def turns(board):
     if board == HIDDEN_COMPUTER:
         row, column = player_input(HIDDEN_COMPUTER)
         if board[row][column] == ' O ':
-            turns(board)
+            turn_status_player = "You already guessed this\n"
+            return turn_status_player
         elif board[row][column] == ' X ':
-            turns(board)
+            turn_status_player = "You already guessed this\n"
+            return turn_status_player
         elif HIDDEN_COMPUTER[row][column] == ' S ':
             board[row][column] = ' X '
-            print("You hit a ship!\n")
+            turn_status_player = "You hit a ship\n"
+            return turn_status_player
         else:
             board[row][column] = ' O '
-            print("You missed!\n")
+            turn_status_player = "You missed!\n"
+            return turn_status_player
     else:
         row, column = random.randint(0,8), random.randint(0,8)
         if board[row][column] == ' O ':
-            turns(board)
+            turn_status_comp = "You already guessed this\n"
+            return turn_status_comp
         elif board[row][column] == ' X ':
-            turns(board)
+            turn_status_comp = "You already guessed this\n"
+            return turn_status_comp
         elif PLAYER_BOARD_SEEN[row][column] == ' S ':
             board[row][column] = ' X '
-            print("The computer hit a ship!\n") 
+            turn_status_comp = "The computer hit a ship!\n"
+            return turn_status_comp
         else:
             board[row][column] = ' O '
-            print("The computer missed!\n")
+            turn_status_comp = "The computer missed!\n"
+            return turn_status_comp
 
 def game_battleship():
     '''
@@ -214,21 +228,19 @@ def game_battleship():
         print("---------------")
         create_board(HIDDEN_COMPUTER)
         turns(HIDDEN_COMPUTER)
-
+        print(turn_status_player)
+        
         if ship_hit(HIDDEN_COMPUTER) == 15:
             print("--------------------------------")
             print("You hit all the ships, you win!!\n")
             break
-        
-
-        
-
         
         #Computer turn
         print("Players board")
         print("-------------")
         turns(PLAYER_BOARD_SEEN)
         create_board(PLAYER_BOARD_SEEN)
+        print(turn_status_comp)
 
         if ship_hit(PLAYER_BOARD_SEEN) == 15:
             print("--------------------------------------------")
