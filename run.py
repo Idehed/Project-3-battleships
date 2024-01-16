@@ -158,10 +158,10 @@ def player_input(create_ships):
                 row = int(row) - 1
                 break
             else:
-                print("Wrong row number, try again\n")
+                print("Wrong row number, try again:\n")
 
         except ValueError:
-            print("Invalid input, try again\n")
+            print("Invalid input, try again:\n")
 
     while True:
         try:
@@ -170,10 +170,10 @@ def player_input(create_ships):
                 column = LETTER_TO_NUM[column]
                 break
             else:
-                print("Wrong column letter, try again\n")
+                print("Wrong column letter, try again:\n")
 
         except KeyError:
-            print("Invalid input, try again\n")
+            print("Invalid input, try again:\n")
     return row, column
 
 
@@ -184,9 +184,9 @@ def turns(board):
     if board == HIDDEN_COMPUTER:
         row, column = player_input(HIDDEN_COMPUTER)
         if board[row][column] == ' O ':
-            print("You already guessed this\n")
+            print("You already guessed this row/column\n")
         elif board[row][column] == ' X ':
-            print("You already guessed this\n")
+            print("You already guessed this row/column\n")
         elif HIDDEN_COMPUTER[row][column] == ' S ':
             board[row][column] = ' X '
             print("You hit a ship\n")
@@ -196,9 +196,9 @@ def turns(board):
     else:
         row, column = random.randint(0, 8), random.randint(0, 8)
         if board[row][column] == ' O ':
-            print("You already guessed this\n")
+            print("You already guessed this row/column\n")
         elif board[row][column] == ' X ':
-            print("You already guessed this\n")
+            print("You already guessed this row/column\n")
         elif PLAYER_BOARD_SEEN[row][column] == ' S ':
             board[row][column] = ' X '
             print("The computer hit a ship!\n")
