@@ -178,35 +178,31 @@ def turns(board):
     if board == HIDDEN_COMPUTER:
         row, column = player_input(HIDDEN_COMPUTER)
         if board[row][column] == ' O ':
-            turn_status_player = "You already guessed this\n"
-            return turn_status_player
+            print("You already guessed this\n")  
         elif board[row][column] == ' X ':
-            turn_status_player = "You already guessed this\n"
-            return turn_status_player
+            print("You already guessed this\n")   
         elif HIDDEN_COMPUTER[row][column] == ' S ':
             board[row][column] = ' X '
-            turn_status_player = "You hit a ship\n"
-            return turn_status_player
+            print("You hit a ship\n")    
         else:
             board[row][column] = ' O '
-            turn_status_player = "You missed!\n"
-            return turn_status_player
+            print("You missed!\n")
     else:
         row, column = random.randint(0,8), random.randint(0,8)
         if board[row][column] == ' O ':
-            turn_status_comp = "You already guessed this\n"
-            return turn_status_comp
+            print("You already guessed this\n")
+            
         elif board[row][column] == ' X ':
-            turn_status_comp = "You already guessed this\n"
-            return turn_status_comp
+            print("You already guessed this\n")
+            
         elif PLAYER_BOARD_SEEN[row][column] == ' S ':
             board[row][column] = ' X '
-            turn_status_comp = "The computer hit a ship!\n"
-            return turn_status_comp
+            print("The computer hit a ship!\n")
+            
         else:
             board[row][column] = ' O '
-            turn_status_comp = "The computer missed!\n"
-            return turn_status_comp
+            print("The computer missed!\n")
+
 
 def game_battleship():
     '''
@@ -228,7 +224,6 @@ def game_battleship():
         print("---------------")
         create_board(HIDDEN_COMPUTER)
         turns(HIDDEN_COMPUTER)
-        print(turn_status_player)
         
         if ship_hit(HIDDEN_COMPUTER) == 15:
             print("--------------------------------")
@@ -240,7 +235,6 @@ def game_battleship():
         print("-------------")
         turns(PLAYER_BOARD_SEEN)
         create_board(PLAYER_BOARD_SEEN)
-        print(turn_status_comp)
 
         if ship_hit(PLAYER_BOARD_SEEN) == 15:
             print("--------------------------------------------")
