@@ -15,25 +15,18 @@ SHIP_LENGTHS = [1, 2, 3, 4, 5]
 def welcome_instruction_name():
     '''
     Welcome message is desplayed and also some information about the game.
-    Player will start the game with tying in their name.  
+    Player will start the game with typing in their name.  
     '''
     print("-----------------------")
     print("Welcome to Battleships!")
     print("-----------------------\n")
     print("-Your task is to sink all 5 boats that are in the ocean")
-    print("-The boats are randomly placed and can be 1-3 in lenght")
+    print("-The first one to get 15 strikes on the boats win!")
+    print("-The boats are randomly placed and can be 1-5 in length")
     print("-Guess a row (A - I) and a column (0 - 8)")
-    print("-You will have 20 turns to complete the task")
     print("-To start the game enter your name\n")
     
     player_name = input("Please enter your name: ")
-    while True:
-        if player_name:
-            break
-            print("Name can not be empty, try again")
-        else:
-            game_battleship()
-
 
     print(f"Let's sink some boats {player_name}!")
     print("")
@@ -44,7 +37,7 @@ welcome_instruction_name()
 
 def create_board(board):
     '''
-    Create board
+    Prints out the board
     '''
     print("   A   B   C   D   E   F   G   H   I  ")
     print("  -----------------------------------")
@@ -56,7 +49,7 @@ def create_board(board):
         row_number +=1
 
 
-    print("  -----------------------------------")
+    print("  -----------------------------------\n")
 
 
 
@@ -111,6 +104,9 @@ def ship_hit(board):
 
 
 def check_ship_fits(SHIP_LENGTHS, row, column, orientation):
+    '''
+    This function checks if placed ships on board will fit 
+    '''
     if orientation == 'horizontal':
         if column + SHIP_LENGTHS > 9:
             return False
@@ -125,7 +121,9 @@ def check_ship_fits(SHIP_LENGTHS, row, column, orientation):
 
 
 def ship_overlaps(board, row, column, orientation ,ship_size):
-
+    '''
+    This function will check if the placed ships are placed on top of each other
+    '''
     if orientation == "horizontal":
         for i in range(column, column + ship_size):
             if board[row][i] == ' S ':
@@ -168,6 +166,9 @@ def player_input(create_ships):
     return row, column
 
 def turns(board):
+    '''
+    This function will go through the player and the computers turns
+    '''
     if board == HIDDEN_COMPUTER:
         row, column = player_input(HIDDEN_COMPUTER)
         if board[row][column] == ' O ':
@@ -202,30 +203,38 @@ def game_battleship():
     create_ships(PLAYER_BOARD_SEEN)
 
     #Show the players board
-    print("Players board\n")
+    print("Guess a battleship location")
+    print("Players board")
+    print("-------------")
     create_board(PLAYER_BOARD_SEEN)
 
     while True:
         #Players turn
-        print("Computer board\n")
+        print("Computers board")
+        print("---------------")
         create_board(HIDDEN_COMPUTER)
         turns(HIDDEN_COMPUTER)
 
         if ship_hit(HIDDEN_COMPUTER) == 15:
+            print("--------------------------------")
             print("You hit all the ships, you win!!\n")
-        break
+            break
+        
 
         
 
         
         #Computer turn
-        print("Players board\n")
+        print("Players board")
+        print("-------------")
         turns(PLAYER_BOARD_SEEN)
         create_board(PLAYER_BOARD_SEEN)
 
         if ship_hit(PLAYER_BOARD_SEEN) == 15:
-            print("The computer hit all your ships, you lose..\n")
-        break
+            print("--------------------------------------------")
+            print("The computer hit all your ships, you lose...\n")
+            break
+        
         
 
 game_battleship()
