@@ -205,8 +205,7 @@ def turns(board):
             board[row][column] = ' X '
             print("\nThe computer hit one of your ships!")
 
-            
-            print("\n" + "=" * 40)  
+            print("\n" + "=" * 40)
             print("Player: {}, Computer: {}".format(
                 ship_hit(HIDDEN_COMPUTER), ship_hit(PLAYER_BOARD_SEEN)))
             print("=" * 40 + "\n")
@@ -215,7 +214,7 @@ def turns(board):
             board[row][column] = ' O '
             print("\nThe computer missed your ships!")
 
-            print("\n" + "=" * 40)  
+            print("\n" + "=" * 40)
             print("Player: {}, Computer: {}".format(
                 ship_hit(HIDDEN_COMPUTER), ship_hit(PLAYER_BOARD_SEEN)))
             print("=" * 40 + "\n")
