@@ -193,6 +193,7 @@ def turns(board):
         else:
             board[row][column] = ' O '
             print("You missed!\n")
+
     else:
         row, column = random.randint(0, 8), random.randint(0, 8)
         if board[row][column] == ' O ':
@@ -202,9 +203,22 @@ def turns(board):
         elif PLAYER_BOARD_SEEN[row][column] == ' S ':
             board[row][column] = ' X '
             print("The computer hit a ship!\n")
+
+            # Print message at the bottom of the terminal
+            print("\n" + "=" * 40)  # Separator line
+            print("Player: {}, Computer: {}".format(
+                ship_hit(HIDDEN_COMPUTER), ship_hit(PLAYER_BOARD_SEEN)))
+            print("=" * 40 + "\n")
+
         else:
             board[row][column] = ' O '
             print("The computer missed!\n")
+
+            # Print message at the bottom of the terminal
+            print("\n" + "=" * 40)  # Separator line
+            print("Player: {}, Computer: {}".format(
+                ship_hit(HIDDEN_COMPUTER), ship_hit(PLAYER_BOARD_SEEN)))
+            print("=" * 40 + "\n")
 
 
 def game_battleship():
@@ -234,9 +248,9 @@ def game_battleship():
             break
 
         # Computer turn
+        turns(PLAYER_BOARD_SEEN)
         print("Players board")
         print("-------------")
-        turns(PLAYER_BOARD_SEEN)
         create_board(PLAYER_BOARD_SEEN)
 
         if ship_hit(PLAYER_BOARD_SEEN) == 15:
