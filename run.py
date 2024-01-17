@@ -229,13 +229,13 @@ def game_battleship():
     create_ships(PLAYER_BOARD_SEEN)
 
     # Show the players board
-    print("Guess a battleship location")
     print("Players board")
     print("-------------")
     create_board(PLAYER_BOARD_SEEN)
 
     while True:
         # Players turn
+        print("Guess a battleship location\n")
         print("Computers board")
         print("---------------")
         create_board(HIDDEN_COMPUTER)
@@ -246,9 +246,9 @@ def game_battleship():
             print("You hit all the ships, you win!!\n")
             break
 
-        # Computer turn
+        # Computers turn
         turns(PLAYER_BOARD_SEEN)
-        print("Players board")
+        print("Player board")
         print("-------------")
         create_board(PLAYER_BOARD_SEEN)
 
