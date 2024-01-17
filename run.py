@@ -184,38 +184,37 @@ def turns(board):
     if board == HIDDEN_COMPUTER:
         row, column = player_input(HIDDEN_COMPUTER)
         if board[row][column] == ' O ':
-            print("You already guessed this row/column\n")
+            print("You already guessed this position. Try again!")
         elif board[row][column] == ' X ':
-            print("You already guessed this row/column\n")
+            print("You already hit this position. Try again!")
         elif HIDDEN_COMPUTER[row][column] == ' S ':
             board[row][column] = ' X '
-            print("You hit a ship\n")
+            print("Wohoooo! You hit a ship!")
         else:
             board[row][column] = ' O '
-            print("You missed!\n")
+            print("Oops! You missed..")
 
     else:
         row, column = random.randint(0, 8), random.randint(0, 8)
         if board[row][column] == ' O ':
-            print("You already guessed this row/column\n")
+            print("Computer repeated a guess, it's thinking...")
         elif board[row][column] == ' X ':
-            print("You already guessed this row/column\n")
+            print("Computer repeated a hit, it's thinking...")
         elif PLAYER_BOARD_SEEN[row][column] == ' S ':
             board[row][column] = ' X '
-            print("The computer hit a ship!\n")
+            print("The computer hit one of your ships!")
 
-            # Print message at the bottom of the terminal
-            print("\n" + "=" * 40)  # Separator line
+            
+            print("\n" + "=" * 40)  
             print("Player: {}, Computer: {}".format(
                 ship_hit(HIDDEN_COMPUTER), ship_hit(PLAYER_BOARD_SEEN)))
             print("=" * 40 + "\n")
 
         else:
             board[row][column] = ' O '
-            print("The computer missed!\n")
+            print("The computer missed your ships!")
 
-            # Print message at the bottom of the terminal
-            print("\n" + "=" * 40)  # Separator line
+            print("\n" + "=" * 40)  
             print("Player: {}, Computer: {}".format(
                 ship_hit(HIDDEN_COMPUTER), ship_hit(PLAYER_BOARD_SEEN)))
             print("=" * 40 + "\n")
