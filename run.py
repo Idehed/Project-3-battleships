@@ -1,4 +1,4 @@
-# Some of the code was with help
+# Some of the code was with the help
 # of Garrett Broughten's
 # Battleships game
 
@@ -10,7 +10,7 @@ HIDDEN_COMPUTER = [[' ~ '] * 9 for x in range(9)]
 # Board for the user. Here you will se misses and hits on the ships.
 PLAYER_BOARD_SEEN = [[' ~ '] * 9 for x in range(9)]
 
-# Converting Letter to numbers
+# Converting Letters to numbers
 LETTER_TO_NUM = {
     'A': 0,
     'B': 1,
@@ -28,8 +28,8 @@ SHIP_LENGTHS = [1, 2, 3, 4, 5]
 
 def welcome_instruction_name():
     '''
-    Welcome message is desplayed and also some information about the game.
-    Player will start the game with typing in their name.
+    The welcome message is displayed and also some information about the game.
+    The player will start the game by typing in their name.
     '''
     print("-----------------------")
     print("Welcome to Battleships!")
@@ -107,7 +107,7 @@ def create_ships(board):
 
 def ship_hit(board):
     '''
-    This functions counts the hits of both the player and the computer
+    This function counts the hits of both the player and the computer
     '''
     count = 0
     for row in board:
@@ -153,7 +153,7 @@ def ship_overlaps(board, row, column, orientation, ship_size):
 def player_input(create_ships):
     '''
     Here the player types in their guesses for both rows and columns.
-    They get and error message if they type
+    They get an error message if they type
     in the wrong key and then they try again.
     '''
     while True:
@@ -184,7 +184,7 @@ def player_input(create_ships):
 
 def turns(board):
     '''
-    This function will go through the player and the computers turns
+    This function will go through the player and the computer turns
     '''
     if board == HIDDEN_COMPUTER:
         row, column = player_input(HIDDEN_COMPUTER)
@@ -232,7 +232,7 @@ def game_battleship():
     create_ships(HIDDEN_COMPUTER)
     create_ships(PLAYER_BOARD_SEEN)
 
-    # Show the players board
+    # Show the player's board
     print("Players board")
     print("-------------")
     create_board(PLAYER_BOARD_SEEN)

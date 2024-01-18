@@ -125,7 +125,7 @@ This project was deployed using Code Institute's mock terminal for Heroku.
    - Go to setting and add a new config var. Key : PORT Value : 8000
    - Then add two new buildpacks, Python and Nodejs. In this order. 
    - Find the forked/cloned repository and connect to it.
-   - Click Diploy!
+   - Click Deploy!
 
 
 # Credits
