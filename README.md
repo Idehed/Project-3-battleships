@@ -25,11 +25,29 @@ The winner is the one who get 15 shots at the opposites ships first.
 
 ## Existing Features
 
+- Welcome message and the information on how to play is displayed. The user will have to put their name in to start the game.
+
+
 ![?](https://github.com/Idehed/Project-3-battleships/assets/146822758/41139d12-37c1-4038-948a-e388dd64f63f)
+
+- Random board generation
+    - 5 ships are randomly put on both the player and the computers board.
+    - The computers board are hidden from the player.
+- Play against the computer
 
 ![?](https://github.com/Idehed/Project-3-battleships/assets/146822758/94a94a68-d097-45ba-a6c0-9bb4b1557b7e)
 
 ![?](https://github.com/Idehed/Project-3-battleships/assets/146822758/473833a4-6c46-474a-a30f-70b2e07121b5)
+
+- Accepts user inputs
+- Maintaines and shows the number of hits for both the player and the computer
+
+![?](https://github.com/Idehed/Project-3-battleships/assets/146822758/84431e6c-6d87-4eed-914f-b364b01f91d7)
+
+- Invalid user input
+    - Error if the user does not enter a row between 1-9.
+    - Error if the user does not enter a column between A-I.
+    - Can not guess the same position twice.
 
 ![?](https://github.com/Idehed/Project-3-battleships/assets/146822758/5ff47a21-aed9-4a60-87cf-49a7103a9bdf)
 
@@ -37,15 +55,24 @@ The winner is the one who get 15 shots at the opposites ships first.
 
 ![?](https://github.com/Idehed/Project-3-battleships/assets/146822758/0968612b-9701-4644-952f-4773f21a1eae)
 
+- User/computers hit and miss confirmation 
+    - Hit message is displayed in the terminal if the user hit one of the computer ships.
+    - The same if the computer hit.
+    - Miss message is displayed if the user missed one of the computers ships.
+    - The same if the computer missed.
+
 ![?](https://github.com/Idehed/Project-3-battleships/assets/146822758/a1eb99e7-5617-41ed-b6af-91264a7e45aa)
 
+
 ![?](https://github.com/Idehed/Project-3-battleships/assets/146822758/7d740906-8bd4-4eec-ae7b-444d03336dc4)
+
 
 ![?](https://github.com/Idehed/Project-3-battleships/assets/146822758/294c8ac1-d15a-425a-8bd5-472a4e702eb2)
 
 ![?](https://github.com/Idehed/Project-3-battleships/assets/146822758/41b9d4fa-c3f8-4331-baba-ab71bc903be8)
 
-![?](https://github.com/Idehed/Project-3-battleships/assets/146822758/13a21de0-2997-4c4e-8e9f-d7f82e312813)
+- This message is displayed if you win.
+- And if you lose this message is displayed "The computer hit all your ships, you lose... "
 
 ![?](https://github.com/Idehed/Project-3-battleships/assets/146822758/6a303fc4-d967-459f-b645-8f4f6ee1ef47)
 
