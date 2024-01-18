@@ -1,3 +1,7 @@
+# Some of the code was with help
+# of Garrett Broughten's
+# Battleships game
+
 import random
 
 # Board for the computer

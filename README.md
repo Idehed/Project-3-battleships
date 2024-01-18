@@ -83,7 +83,7 @@ The winner is the one who get 15 shots at the opposites ships first.
 
 ## Validator Testing 
 
-PEPCI:
+PEP8:
 
 - 
 -
@@ -98,17 +98,23 @@ PEPCI:
 ---
 
 # Deployment 
+This project was deployed using Code Institute's mock terminal for Heroku.
 
-- 
-- 
-- 
-- 
-- 
-- 
+- How to deploy: 
+   - Fork or clone this repository.
+   - Create/log into a heroku account.
+   - Go to your dashboard and then click New, Create new app.
+   - Choose your app name(needs to be unique) and region.
+   - Click Create app.
+   - Go to setting and add a new config var. Key : PORT Value : 8000
+   - Then add two new buildpacks, Python and Nodejs. In this order. 
+   - Find the forked/cloned repository and connect to it.
+   - Click Diploy!
 
 
 # Credits
 
-- 
-- 
-- 
+- [Garrett Broughten](https://github.com/gbrough/battleship/blob/main/5_ship_types_with_computer.py) Helping me with some of my code.
+- [Stackoverflow](https://stackoverflow.com/questions/75696001/battleships-game-python-when-playing-game-no-hits-are-recorded-through-the-ga) Showed me how to hide the computers board.
+- [w3schools](https://www.w3schools.com/python/ref_string_format.asp) Learnt how to use the format method for showing the hit counter in the terminal.
+- My mentor Ronan Mc for his support and guidance.
