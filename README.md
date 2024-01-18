@@ -4,7 +4,7 @@ Battleships is a Python-based terminal game that runs in the Code Institutes moc
 
 The user is trying to sink the computer's boats before they do. Whoever sinks all the boats on their opposite board wins!
 
-[Here is a live version of my project]()
+[Here is a live version of my project](https://battleship-project3-anton-a660fc6fad85.herokuapp.com/)
 
 ![Game in different views](https://github.com/Idehed/Project-3-battleships/assets/146822758/5538260e-ee5a-4486-9436-90207a9f1934)
 
