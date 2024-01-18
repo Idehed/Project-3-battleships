@@ -16,7 +16,7 @@ It is played on ruled grids (paper or board) on which each player's fleet of war
  
 The locations of the fleets are concealed from the other player. Players alternate turns calling "shots" at the other player's ships, and the objective of the game is to destroy the opposing player's fleet.
 
-The grid in this battleship game is a 10*10 board with 5 ships that are randomly placed for both the player and the computer.
+The grid in this battleship game is a 10x10 board with 5 ships that are randomly placed for both the player and the computer.
 The guesses that are misses are marked with an "O" and the guesses that are a hits are marked with an "X".
 
 The winner is the one who gets 15 shots at the opposite ships first. 
@@ -75,6 +75,10 @@ The winner is the one who gets 15 shots at the opposite ships first.
 - And if you lose this message is displayed "The computer hit all your ships, you lose... "
 
 ![player win](https://github.com/Idehed/Project-3-battleships/assets/146822758/6a303fc4-d967-459f-b645-8f4f6ee1ef47)
+
+# Flowchart of the game 
+
+![flowchart](https://github.com/Idehed/Project-3-battleships/assets/146822758/1613bf71-99db-446f-83c7-03c9d5572acc)
 
 
 # Testing
