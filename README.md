@@ -1,8 +1,8 @@
 # Battleships
 
-Battleships is a python-based terminal game that runs in the Code Institutes mock terminal Heroku.
+Battleships is a Python-based terminal game that runs in the Code Institutes mock terminal Heroku.
 
-The user is trying to sink the computers boats before they do. Whoever sink all the boats on their opposites board wins!
+The user is trying to sink the computer's boats before they do. Whoever sinks all the boats on their opposite board wins!
 
 [Here is a live version of my project]()
 
@@ -10,29 +10,29 @@ The user is trying to sink the computers boats before they do. Whoever sink all 
 
 # How to play
 
-Battleship is a strategy type guessing game for two players.
+Battleship is a strategy-type guessing game for two players.
 
-It is played on ruled grids (paper or board) on which each player's fleet of warships are marked.
+It is played on ruled grids (paper or board) on which each player's fleet of warships is marked.
  
 The locations of the fleets are concealed from the other player. Players alternate turns calling "shots" at the other player's ships, and the objective of the game is to destroy the opposing player's fleet.
 
 The grid in this battleship game is a 10*10 board with 5 ships that are randomly placed for both the player and the computer.
-The guesses that are misses are marked with a "O" and the guesses that are a hit are marked with a "X".
+The guesses that are misses are marked with an "O" and the guesses that are a hits are marked with an "X".
 
-The winner is the one who get 15 shots at the opposites ships first. 
+The winner is the one who gets 15 shots at the opposite ships first. 
 
 # Features
 
 ## Existing Features
 
-- Welcome message and the information on how to play is displayed. The user will have to put their name in to start the game.
+- Welcome message and the information on how to play are displayed. The user will have to put their name in to start the game.
 
 
 ![Welcome/instruction](https://github.com/Idehed/Project-3-battleships/assets/146822758/41139d12-37c1-4038-948a-e388dd64f63f)
 
 - Random board generation
-    - 5 ships are randomly put on both the player and the computers board.
-    - The computers board are hidden from the player.
+    - 5 ships are randomly put on both the player and the computer's board.
+    - The computer board is hidden from the player.
 - Play against the computer
 
 ![the players board](https://github.com/Idehed/Project-3-battleships/assets/146822758/94a94a68-d097-45ba-a6c0-9bb4b1557b7e)
@@ -40,14 +40,14 @@ The winner is the one who get 15 shots at the opposites ships first.
 ![computers board](https://github.com/Idehed/Project-3-battleships/assets/146822758/473833a4-6c46-474a-a30f-70b2e07121b5)
 
 - Accepts user inputs
-- Maintaines and shows the number of hits for both the player and the computer
+- Maintains and shows the number of hits for both the player and the computer
 
 ![two boards](https://github.com/Idehed/Project-3-battleships/assets/146822758/84431e6c-6d87-4eed-914f-b364b01f91d7)
 
 - Invalid user input
     - Error if the user does not enter a row between 1-9.
     - Error if the user does not enter a column between A-I.
-    - Can not guess the same position twice.
+    - Cannot guess the same position twice.
 
 ![wrong guess](https://github.com/Idehed/Project-3-battleships/assets/146822758/5ff47a21-aed9-4a60-87cf-49a7103a9bdf)
 
@@ -55,11 +55,11 @@ The winner is the one who get 15 shots at the opposites ships first.
 
 ![already guessed](https://github.com/Idehed/Project-3-battleships/assets/146822758/0968612b-9701-4644-952f-4773f21a1eae)
 
-- User/computers hit and miss confirmation 
-    - Hit message is displayed in the terminal if the user hit one of the computer ships.
-    - The same if the computer hit.
-    - Miss message is displayed if the user missed one of the computers ships.
-    - The same if the computer missed.
+- User/computer hit-and-miss confirmation 
+    - Hit message is displayed in the terminal if the user hits one of the computer ships.
+    - The same if the computer's ship is hit.
+    - Miss message is displayed if the user missed one of the computer's ships.
+    - The same if the computer's ship is missed.
 
 ![hit player](https://github.com/Idehed/Project-3-battleships/assets/146822758/a1eb99e7-5617-41ed-b6af-91264a7e45aa)
 
@@ -79,13 +79,13 @@ The winner is the one who get 15 shots at the opposites ships first.
 
 # Testing
 I tested the game manually by doing this:
-- Passed my code in the PEP8 Linter. 
-- I gave wrong input , row/column not in range and same input twice.
-- Tested the in the heroku terminal and my local terminal.
+- I passed my code in the PEP8 Linter. 
+- I gave the wrong input, row/column was not in range,  and the same input was twice.
+- Tested the in the Heroku terminal and my local terminal.
 
 ## Bugs
 
-- When the player hit a ship the counter that was displayed showed "computer: 1" , instead of "player : 1".
+- When the player hit a ship the counter that was displayed showed "computer: 1", instead of "player: 1".
 Needed to changed that in this code : 
 
             print("\n" + "=" * 40)
@@ -101,7 +101,7 @@ Needed to changed that in this code :
 
 PEP8:
 
-- Most of my errors where whitespaces, to many black lines or line to long. These where easily fixed in the code.
+- Most of my errors were whitespaces, too many black lines, or line too long. These were easily fixed in the code.
 - After fixing them no errors returned.
 
 
@@ -118,11 +118,11 @@ This project was deployed using Code Institute's mock terminal for Heroku.
 
 - How to deploy: 
    - Fork or clone this repository.
-   - Create/log into a heroku account.
+   - Create/log into a Heroku account.
    - Go to your dashboard and then click New, Create new app.
    - Choose your app name(needs to be unique) and region.
    - Click Create app.
-   - Go to setting and add a new config var. Key : PORT Value : 8000
+   - Go to settings and add a new config var. Key: PORT ,Value: 8000
    - Then add two new buildpacks, Python and Nodejs. In this order. 
    - Find the forked/cloned repository and connect to it.
    - Click Deploy!
@@ -131,6 +131,6 @@ This project was deployed using Code Institute's mock terminal for Heroku.
 # Credits
 
 - [Garrett Broughten](https://github.com/gbrough/battleship/blob/main/5_ship_types_with_computer.py) Helping me with some of my code.
-- [Stackoverflow](https://stackoverflow.com/questions/75696001/battleships-game-python-when-playing-game-no-hits-are-recorded-through-the-ga) Showed me how to hide the computers board.
+- [Stackoverflow](https://stackoverflow.com/questions/75696001/battleships-game-python-when-playing-game-no-hits-are-recorded-through-the-ga) Showed me how to hide the computer board.
 - [w3schools](https://www.w3schools.com/python/ref_string_format.asp) Learnt how to use the format method for showing the hit counter in the terminal.
 - My mentor Ronan Mc for his support and guidance.
