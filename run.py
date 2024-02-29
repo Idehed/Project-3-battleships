@@ -25,6 +25,14 @@ LETTER_TO_NUM = {
 
 SHIP_LENGTHS = [1, 2, 3, 4, 5]
 
+def player_input():
+    while True:
+        player_name = input("Please enter your name: \n")
+        if not player_name.strip():
+            print("Not a valid name, try again!")
+        else:
+            return player_name
+
 
 def welcome_instruction_name():
     '''
@@ -38,9 +46,9 @@ def welcome_instruction_name():
     print("- The first one to get 15 strikes on the boats win!")
     print("- The boats are randomly placed and can be 1-5 in length")
     print("- O = missed shot, X = ship hit")
-    print("- Guess a row (A - I) and a column (1 - 9)")
+    print("- Guess a row (1 - 9) and a column (A - I)")
     print("- To start the game enter your name\n")
-    player_name = input("Please enter your name: \n")
+    player_name = player_input()
     print(f"Let's sink some boats {player_name}!")
     print("")
 
@@ -159,28 +167,31 @@ def player_input(create_ships):
     while True:
         try:
             row = input("Guess the row between 1-9:\n")
-            if row in "123456789":
+            if row in "1,2,3,4,5,6,7,8,9":
                 row = int(row) - 1
                 break
             else:
                 print("Wrong row number, try again:\n")
-
         except ValueError:
             print("Invalid input, try again:\n")
 
     while True:
         try:
             column = input("Guess the column between A-I:\n").upper()
-            if column in "ABCDEFGHI":
+            if column not in "ABCDEFGHI":
+                print("Please enter a valid letter between A-I:\n")
+            else:
                 column = LETTER_TO_NUM[column]
                 break
-            else:
-                print("Wrong column letter, try again:\n")
-
         except KeyError:
             print("Invalid input, try again:\n")
     return row, column
 
+def show_score():
+    print("\n" + "=" * 40)
+    print("Player: {}, Computer: {}".format(
+        ship_hit(HIDDEN_COMPUTER), ship_hit(PLAYER_BOARD_SEEN)))
+    print("=" * 40 + "\n")
 
 def turns(board):
     '''
@@ -189,9 +200,11 @@ def turns(board):
     if board == HIDDEN_COMPUTER:
         row, column = player_input(HIDDEN_COMPUTER)
         if board[row][column] == ' O ':
-            print("\nYou already guessed this position. Try again!")
+            print("\nYou already guessed this position. Try again!\n")
+            turns(board)
         elif board[row][column] == ' X ':
-            print("\nYou already hit this position. Try again!")
+            print("\nYou already hit this position. Try again!\n")
+            turns(board)
         elif HIDDEN_COMPUTER[row][column] == ' S ':
             board[row][column] = ' X '
             print("\nWohoooo! You hit a ship!")
@@ -203,25 +216,23 @@ def turns(board):
         row, column = random.randint(0, 8), random.randint(0, 8)
         if board[row][column] == ' O ':
             print("\nComputer repeated a guess, it's thinking...")
+            show_score()
         elif board[row][column] == ' X ':
             print("\nComputer repeated a hit, it's thinking...")
+            show_score()
         elif PLAYER_BOARD_SEEN[row][column] == ' S ':
             board[row][column] = ' X '
             print("\nThe computer hit one of your ships!")
+            print("--------------------------------------------")
 
-            print("\n" + "=" * 40)
-            print("Player: {}, Computer: {}".format(
-                ship_hit(HIDDEN_COMPUTER), ship_hit(PLAYER_BOARD_SEEN)))
-            print("=" * 40 + "\n")
+            show_score()
 
         else:
             board[row][column] = ' O '
             print("\nThe computer missed your ships!")
+            print("--------------------------------------------")
 
-            print("\n" + "=" * 40)
-            print("Player: {}, Computer: {}".format(
-                ship_hit(HIDDEN_COMPUTER), ship_hit(PLAYER_BOARD_SEEN)))
-            print("=" * 40 + "\n")
+            show_score()
 
 
 def game_battleship():
@@ -232,34 +243,32 @@ def game_battleship():
     create_ships(HIDDEN_COMPUTER)
     create_ships(PLAYER_BOARD_SEEN)
 
-    # Show the player's board
-    print("Players board")
-    print("-------------")
-    create_board(PLAYER_BOARD_SEEN)
-
     while True:
-        # Players turn
-        print("Guess a battleship location\n")
-        print("Computers board")
-        print("---------------")
-        create_board(HIDDEN_COMPUTER)
-        turns(HIDDEN_COMPUTER)
+        play = input("Press any key to continue or 'q' to quit\n")
+        if play == 'q':
+            print("Game ended")
+            quit()
+        else:
+            # Players turn
+            print("Computers board")
+            print("---------------")
+            create_board(HIDDEN_COMPUTER)
 
-        if ship_hit(HIDDEN_COMPUTER) == 15:
-            print("--------------------------------")
-            print("You hit all the ships, you win!!\n")
-            break
+            # Computers turn
+            print("Player board")
+            print("-------------")
+            create_board(PLAYER_BOARD_SEEN)
+            turns(HIDDEN_COMPUTER)
+            turns(PLAYER_BOARD_SEEN)
 
-        # Computers turn
-        turns(PLAYER_BOARD_SEEN)
-        print("Player board")
-        print("-------------")
-        create_board(PLAYER_BOARD_SEEN)
+            if ship_hit(HIDDEN_COMPUTER) == 15:
+                print("--------------------------------")
+                print("You hit all the ships, you win!!\n")
+                break
 
-        if ship_hit(PLAYER_BOARD_SEEN) == 15:
-            print("--------------------------------------------")
-            print("The computer hit all your ships, you lose...\n")
-            break
-
+            if ship_hit(PLAYER_BOARD_SEEN) == 15:
+                print("--------------------------------------------")
+                print("The computer hit all your ships, you lose...\n")
+                break
 
 game_battleship()
