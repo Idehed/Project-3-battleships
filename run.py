@@ -26,6 +26,11 @@ LETTER_TO_NUM = {
 SHIP_LENGTHS = [1, 2, 3, 4, 5]
 
 def player_input():
+    '''
+    This function lets the player type in their name.
+    If they do not type in nothing they will get an error
+    and they have to try again.
+    '''
     while True:
         player_name = input("Please enter your name: \n")
         if not player_name.strip():
@@ -171,7 +176,7 @@ def player_input(create_ships):
                 row = int(row) - 1
                 break
             else:
-                print("Wrong row number, try again:\n")
+                print("Please enter a valid row number between 1-9:\n")
         except ValueError:
             print("Invalid input, try again:\n")
 
@@ -188,6 +193,10 @@ def player_input(create_ships):
     return row, column
 
 def show_score():
+    '''
+    This function shows the score to both the player
+    and the computer after each turn
+    '''
     print("\n" + "=" * 40)
     print("Player: {}, Computer: {}".format(
         ship_hit(HIDDEN_COMPUTER), ship_hit(PLAYER_BOARD_SEEN)))
@@ -223,15 +232,11 @@ def turns(board):
         elif PLAYER_BOARD_SEEN[row][column] == ' S ':
             board[row][column] = ' X '
             print("\nThe computer hit one of your ships!")
-            print("--------------------------------------------")
-
             show_score()
 
         else:
             board[row][column] = ' O '
             print("\nThe computer missed your ships!")
-            print("--------------------------------------------")
-
             show_score()
 
 
@@ -250,7 +255,7 @@ def game_battleship():
             quit()
         else:
             # Players turn
-            print("Computers board")
+            print("Computer board")
             print("---------------")
             create_board(HIDDEN_COMPUTER)
 
