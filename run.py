@@ -171,9 +171,9 @@ def player_input(create_ships):
     '''
     while True:
         try:
-            row = input("Guess the row between 1-9:\n")
-            if row in "1,2,3,4,5,6,7,8,9":
-                row = int(row) - 1
+            row = int(input("Guess the row between 1-9:\n"))
+            if 1 <= row <= 9:
+                row -= 1  
                 break
             else:
                 print("Please enter a valid row number between 1-9:\n")
