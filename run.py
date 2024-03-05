@@ -25,7 +25,7 @@ LETTER_TO_NUM = {
 
 SHIP_LENGTHS = [1, 2, 3, 4, 5]
 
-def player_input():
+def get_player_name():
     '''
     This function lets the player type in their name.
     If they do not type in nothing they will get an error
@@ -53,7 +53,7 @@ def welcome_instruction_name():
     print("- O = missed shot, X = ship hit")
     print("- Guess a row (1 - 9) and a column (A - I)")
     print("- To start the game enter your name\n")
-    player_name = player_input()
+    player_name = get_player_name()
     print(f"Let's sink some boats {player_name}!")
     print("")
 
